@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Post a Job - Job in India</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f1f3f5;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      margin: 0;
+      padding: 40px 0;
+    }
+    form {
+      background: white;
+      padding: 25px 30px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      width: 400px;
+      box-sizing: border-box;
+    }
+    h2 {
+      margin-bottom: 20px;
+      font-weight: 700;
+      color: #333;
+    }
+    label {
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #444;
+    }
+    input[type="text"],
+    textarea {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 18px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 14px;
+      font-family: inherit;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 100px;
+    }
+    button {
+      width: 100%;
+      padding: 12px;
+      background-color: #007bff;
+      border: none;
+      border-radius: 6px;
+      font-weight: 700;
+      font-size: 16px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+
+  <form id="jobForm" novalidate>
+    <h2>Post a Job</h2>
+
+    <label for="title">Job Title</label>
+    <input type="text" id="title" name="title" placeholder="Enter job title" required />
+
+    <label for="company">Company Name</label>
+    <input type="text" id="company" name="company" placeholder="Enter company name" required />
+
+    <label for="location">Location</label>
+    <input type="text" id="location" name="location" placeholder="Enter job location" required />
+
+    <label for="salary">Salary (per annum)</label>
+    <input type="text" id="salary" name="salary" placeholder="e.g. ₹5,00,000" pattern="^\d{1,3}(,\d{3})*(\.\d{2})?$" title="Enter a valid salary format" />
+
+    <label for="description">Job Description</label>
+    <textarea id="description" name="description" placeholder="Describe the job role and requirements" required></textarea>
+
+    <button type="submit">Post Job</button>
+  </form>
+
+  <script>
+    const jobForm = document.getElementById('jobForm');
+
+    jobForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+
+      const title = this.title.value.trim();
+      const company = this.company.value.trim();
+      const location = this.location.value.trim();
+      const salary = this.salary.value.trim();
+      const description = this.description.value.trim();
+
+      if (!title) {
+        alert('Job title is required.');
+        this.title.focus();
+        return;
+      }
+      if (!company) {
+        alert('Company name is required.');
+        this.company.focus();
+        return;
+      }
+      if (!location) {
+        alert('Location is required.');
+        this.location.focus();
+        return;
+      }
+      if (salary && !/^\d{1,3}(,\d{3})*(\.\d{2})?$/.test(salary)) {
+        alert('Please enter a valid salary format, e.g. 50,000 or 5,00,000.00');
+        this.salary.focus();
+        return;
+      }
+      if (!description) {
+        alert('Job description is required.');
+        this.description.focus();
+        return;
+      }
+
+      // Submit data to backend here
+      alert('Job posted successfully!');
+      this.reset();
+    });
+  </script>
+
+</body>
+</html>
